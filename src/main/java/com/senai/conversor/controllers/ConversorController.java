@@ -1,10 +1,13 @@
 package com.senai.conversor.controllers;
 
-import com.senai.conversor.dtos.*;
+import com.senai.conversor.dtos.ConversorDTO;
+import com.senai.conversor.dtos.ResultadoConversorDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/conversor")
@@ -15,8 +18,8 @@ public class ConversorController {
     public ResponseEntity<ResultadoConversorDTO> converterTemperatura(@RequestBody ConversorDTO dados){
         // Formula fahrenheit = (celsius * 9/5) + 32
 
-        float fahrenheit = 0f;
-        float celsius = 0f;
+        float fahrenheit;
+        float celsius;
         ResultadoConversorDTO resultado = new ResultadoConversorDTO();
 
         //-- "C" - Célsius | "F" - Fahrenheit 
@@ -79,10 +82,10 @@ public class ConversorController {
     public ResponseEntity<ResultadoConversorDTO> converterMassa(@RequestBody ConversorDTO dados){
         ResultadoConversorDTO resultado = new ResultadoConversorDTO();
 
-        if (dados.getUnidadeOrigem().equals("KG") && dados.getUnidadeDestino().equals("G")) {
+        if (dados.getUnidadeOrigem().equals("K") && dados.getUnidadeDestino().equals("G")) {
             // Converter de kg para g
             resultado.setValor(dados.getValor() * 1000);
-        } else if (dados.getUnidadeOrigem().equals("G") && dados.getUnidadeDestino().equals("KG")) {
+        } else if (dados.getUnidadeOrigem().equals("G") && dados.getUnidadeDestino().equals("K")) {
             // Converter de g para kg
             resultado.setValor(dados.getValor() / 1000);
         } else {
@@ -99,10 +102,10 @@ public class ConversorController {
     public ResponseEntity<ResultadoConversorDTO> converterVolume(@RequestBody ConversorDTO dados){
         ResultadoConversorDTO resultado = new ResultadoConversorDTO();
 
-        if (dados.getUnidadeOrigem().equals("L") && dados.getUnidadeDestino().equals("ML")) {
+        if (dados.getUnidadeOrigem().equals("L") && dados.getUnidadeDestino().equals("M")) {
             // Converter de L para mL
             resultado.setValor(dados.getValor() * 1000);
-        } else if (dados.getUnidadeOrigem().equals("ML") && dados.getUnidadeDestino().equals("L")) {
+        } else if (dados.getUnidadeOrigem().equals("M") && dados.getUnidadeDestino().equals("L")) {
             // Converter de mL para L
             resultado.setValor(dados.getValor() / 1000);
         } else {
