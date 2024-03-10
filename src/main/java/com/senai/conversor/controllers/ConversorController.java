@@ -1,10 +1,13 @@
 package com.senai.conversor.controllers;
 
-import com.senai.conversor.dtos.*;
+import com.senai.conversor.dtos.ConversorDTO;
+import com.senai.conversor.dtos.ResultadoConversorDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/conversor")
@@ -15,8 +18,8 @@ public class ConversorController {
     public ResponseEntity<ResultadoConversorDTO> converterTemperatura(@RequestBody ConversorDTO dados){
         // Formula fahrenheit = (celsius * 9/5) + 32
 
-        float fahrenheit = 0f;
-        float celsius = 0f;
+        float fahrenheit;
+        float celsius;
         ResultadoConversorDTO resultado = new ResultadoConversorDTO();
 
         //-- "C" - Célsius | "F" - Fahrenheit 
